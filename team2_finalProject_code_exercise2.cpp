@@ -130,7 +130,7 @@ int main()
         }
 
         else if (user_choice == 5) {
-
+            cout << "bye bye";
         }
 
         else {
