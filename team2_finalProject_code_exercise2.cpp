@@ -11,6 +11,7 @@ FOR 5: EXIT
 
 */     
 
+#include <limits>
 #include <iostream>
 using namespace std;
 
@@ -40,49 +41,88 @@ void calculate_Add_ToStock ( int code, int quantity );
 
 
 //Main Program
-int main (){
+int main()
+{
 
     //Declare variables and constants and initialize
     Product small, medium, big, extra;
-    
+    int user_choice;
 
     //filling the product info
-    //small
-    small.code = 50;
-    small.dimension = "Small";
-    small.unit_price = 15.99;
+        //small
+        small.code = 50;
+        small.dimension = "Small";
+        small.unit_price = 15.99;
+        //medium
+        medium.code = 100;
+        medium.dimension = "Medium";
+        medium.unit_price = 24.99;
+        //small
+        big.code = 250;
+        big.dimension = "Big";
+        big.unit_price = 49.99;
+        //medium
+        extra.code = 500;
+        extra.dimension = "Extra";
+        extra.unit_price = 89.99;
 
-    //medium
-    medium.code = 100;
-    medium.dimension = "Medium";
-    medium.unit_price = 24.99;
+    while (user_choice != 5){
+        cout 
+        << "***************************************************************" <<endl
+        << "*************  Welcome to CALCULATOR PLUS !  ******************" <<endl
+        << "Choose :" <<endl
+        << "1 for INFORMATION ABOUT 1 PRODUCT" <<endl
+        << "2 for INFORMATION ABOUT ALL THE PRODUCTS" <<endl
+        << "3 for PURCHASE CALCULATOR" <<endl
+        << "4 for STOCK INVENTORY AND REPLENISHMENTS" <<endl
+        << "5 for EXIT" <<endl
+        << "***************************************************************" <<endl
+        << "Write your choice below: (1 to 5)" <<endl ;
+        cin >>user_choice;
+        while (cin.fail()){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
 
-    //small
-    big.code = 250;
-    big.dimension = "Big";
-    big.unit_price = 49.99;
+        if (user_choice == 1) {
+            while (user_choice != 50 & user_choice != 100 & user_choice != 250 & user_choice != 500){
+            //invite input and make sure it is a number
+            cout << "invite input" ;
+            cin >>user_choice;
+            while (cin.fail()){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            //actual choice
+            if (user_choice == 50){
+                information(small);
+            }
+            else if (user_choice == 100){
+                information(medium);
+            }
+            else if (user_choice == 250){
+                information(big);
+            }
+            else if (user_choice == 500){
+                information(extra);
+            }
+            else {
+                cout << "you fool";
+            }
+        }
+        }
 
-    //medium
-    extra.code = 500;
-    extra.dimension = "Extra";
-    extra.unit_price = 89.99;
-
-
-    //Invite, read and save inputs
-    
-
-
-    //Calculate
-
-
-
-    //Display outputs
-
-
-
-
-    return 0;
-
+        else if (user_choice == 2) {
+            information(small);
+            information(medium);
+            information(big);
+            information(extra);
+            //names_of_the_other_functions (other variables);
+        }
+        else {
+            cout << "ERROR! You wrote a wrong number. Try again!" <<endl;
+        }
+    }
 }
 
 
