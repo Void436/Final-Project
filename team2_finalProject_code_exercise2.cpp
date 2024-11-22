@@ -16,7 +16,6 @@ using namespace std;
 
 
 //declaring functions
-
 void write_productInfo (int code);
 int read_mainMenu ();
 int read_stockMenu();
