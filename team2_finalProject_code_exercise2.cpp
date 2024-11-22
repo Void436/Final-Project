@@ -130,7 +130,7 @@ int main()
         }
 
         else if (user_choice == 5) {
-            cout << "Thank you for shopping at Sirop d'Érable Montréal.";
+            cout << "Thank you for shopping at Sirop d'Érable Montréal.See you soon!";
         }
 
         else {
