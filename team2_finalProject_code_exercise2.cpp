@@ -15,8 +15,23 @@ FOR 5: EXIT
 using namespace std;
 
 
+
+struct Product {
+    int code;
+    string dimension;
+    float unit_price;
+    int current_stock = 0;
+};
+
+
+//Declare variables and constants and initialize
+
+const float tps = 0.05;
+const float tvq = 0.9975;
+
+template <typename T>
 //declaring functions
-void write_productInfo (int code);
+void information(const T& p);
 int read_mainMenu ();
 int read_stockMenu();
 void stock_inventory (int code);
@@ -28,11 +43,33 @@ void calculate_Add_ToStock ( int code, int quantity );
 int main (){
 
     //Declare variables and constants and initialize
+    Product small, medium, big, extra;
+    
 
+    //filling the product info
+    //small
+    small.code = 50;
+    small.dimension = "Small";
+    small.unit_price = 15.99;
+
+    //medium
+    medium.code = 100;
+    medium.dimension = "Medium";
+    medium.unit_price = 24.99;
+
+    //small
+    big.code = 250;
+    big.dimension = "Big";
+    big.unit_price = 49.99;
+
+    //medium
+    extra.code = 500;
+    extra.dimension = "Extra";
+    extra.unit_price = 89.99;
 
 
     //Invite, read and save inputs
-
+    
 
 
     //Calculate
@@ -64,8 +101,8 @@ int main (){
 
 
 
-//robert
 
+//robert
 template <typename T>
 void information(const T& p)
 {
