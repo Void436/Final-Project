@@ -47,6 +47,7 @@ int main()
     //Declare variables and constants and initialize
     Product small, medium, big, extra;
     int user_choice;
+    int user_choice_sequel;
 
     //filling the product info
         //small
@@ -85,29 +86,29 @@ int main()
         }
 
         if (user_choice == 1) {
-            while (user_choice != 50 & user_choice != 100 & user_choice != 250 & user_choice != 500){
+            while (user_choice_sequel != 50 & user_choice_sequel != 100 & user_choice_sequel != 250 & user_choice_sequel != 500){
             //invite input and make sure it is a number
-            cout << "invite input" ;
-            cin >>user_choice;
+            cout << "Enter the CODE of the product (50, 100, 250 or 500) to display it's details:" <<endl;
+            cin >>user_choice_sequel;
             while (cin.fail()){
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
             //actual choice
-            if (user_choice == 50){
+            if (user_choice_sequel == 50){
                 information(small);
             }
-            else if (user_choice == 100){
+            else if (user_choice_sequel == 100){
                 information(medium);
             }
-            else if (user_choice == 250){
+            else if (user_choice_sequel == 250){
                 information(big);
             }
-            else if (user_choice == 500){
+            else if (user_choice_sequel == 500){
                 information(extra);
             }
             else {
-                cout << "you fool";
+                cout << "The product code entered is not valid." <<endl;
             }
         }
         }
@@ -119,6 +120,19 @@ int main()
             information(extra);
             //names_of_the_other_functions (other variables);
         }
+
+        else if (user_choice == 3) {
+
+        }
+
+        else if (user_choice == 4) {
+
+        }
+
+        else if (user_choice == 5) {
+
+        }
+
         else {
             cout << "ERROR! You wrote a wrong number. Try again!" <<endl;
         }
@@ -151,9 +165,9 @@ void information(const T& p)
     << "CODE            : " << p.code <<endl
     << "DIMENSION       : " << p.dimension <<" ml" <<endl
     << "UNIT PRICE      : " << p.unit_price <<" $CA" <<endl
-    << "TPS             : " << p.tps <<" $CA" <<"    (5%)" <<endl
-    << "TVQ             : " << p.tvq <<" $CA" <<"   (9.975%)" <<endl
-    << "TOTAL           : " << p.total <<" $CA" <<endl
+    << "TPS             : " << p.unit_price*tps <<" $CA" <<"    (5%)" <<endl
+    << "TVQ             : " << p.unit_price*tvq <<" $CA" <<"   (9.975%)" <<endl
+    << "TOTAL           : " << p.unit_price + p.unit_price*tps + p.unit_price*tvq <<" $CA" <<endl
     << "CURRENT STOCK   : " << p.current_stock <<" items" <<endl
     << "----------------------------------------------------------------" <<endl;
 }
