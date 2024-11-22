@@ -66,8 +66,19 @@ int main (){
 
 //robert
 
-void write_productInfo (int code){
-
+template <typename T>
+void information(const T& p)
+{
+    cout
+    << "----------------------------------------------------------------" <<endl
+    << "CODE            : " << p.code <<endl
+    << "DIMENSION       : " << p.dimension <<" ml" <<endl
+    << "UNIT PRICE      : " << p.unit_price <<" $CA" <<endl
+    << "TPS             : " << p.tps <<" $CA" <<"    (5%)" <<endl
+    << "TVQ             : " << p.tvq <<" $CA" <<"   (9.975%)" <<endl
+    << "TOTAL           : " << p.total <<" $CA" <<endl
+    << "CURRENT STOCK   : " << p.current_stock <<" items" <<endl
+    << "----------------------------------------------------------------" <<endl;
 }
 
 int read_mainMenu () {
