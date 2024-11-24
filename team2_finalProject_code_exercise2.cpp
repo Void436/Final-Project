@@ -1,5 +1,4 @@
 /*
-
 READ user's choice from main menu 
 COMPLY with user's choice 
 FOR 1: DISPLAY a single product info
@@ -9,13 +8,13 @@ FOR 3: CALCULATE the user's purchase with taxes and total
 FOR 4:  CALCULATE and DISPLAY stock  quantity and be able to add  to stock
 FOR 5: EXIT
 
-*/     
+*/  
 
-#include <limits>
 #include <iostream>
 using namespace std;
 
 
+//Declare variables and constants and initialize
 
 struct Product {
     int code;
@@ -24,23 +23,23 @@ struct Product {
     int current_stock = 0;
 };
 
+const float TPS = 0.05;
+const float TVQ = 0.09975;
 
-//Declare variables and constants and initialize
 
-const float tps = 0.05;
-const float tvq = 0.9975;
 
-template <typename T>
 //declaring functions
-void information(const T& p);
-int read_mainMenu ();
+void information(const Product& product);
+int read_mainMenu();
 int read_stockMenu();
-void stock_inventory (int code);
-void calculate_User_Purchase ();
-void calculate_Add_ToStock ( int code, int quantity );
+void stock_inventory(Product& product);
+void calculate_User_Purchase(Product products[], int size);
+void calculate_Add_ToStock(Product& product, int quantity);
 
 
-//Main Program
+
+
+//main Program
 int main()
 {
 
