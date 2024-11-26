@@ -230,17 +230,36 @@ int read_mainMenu() {
 //fin
 
 
-int read_stockMenu(){
-
-}
+int read_stockMenu() {
  
-void stock_inventory (int code) {
-
+    int choice;
+ 
+    do {
+        cout << "******************************************************************************************************************" << endl;
+        cout << "Choose :" << endl;
+        cout << "\t1. for STOCK INVENTORY" << endl;
+        cout << "\t2. for STOCK REPLENISHMENT" << endl;
+        cout << "\t3. for MAIN MENU" << endl;
+        cout << "******************************************************************************************************************" << endl;
+        cout << "Write your choice below (1 to 3) " << endl;
+        cin >> choice;
+ 
+        if (choice < 1 || choice > 3 || cin.fail()) {
+ 
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+ 
+            cout << "ERROR! You wrote a wrong number. Try again!" << endl << endl;
+            choice = 0;
+ 
+        }
+ 
+    } while (choice < 1 || choice > 3);
+ 
+ 
+    return choice;
+ 
 }
-
-
-
-
 
 
 
