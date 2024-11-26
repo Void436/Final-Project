@@ -283,6 +283,13 @@ void one_information(const Product& product) {
     cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
  
 }
+ 
+void calculate_Add_ToStock(Product& product, int quantity) {
+ 
+    product.current_stock += quantity;
+    cout << "The stock was REPLENISHED successfully." << endl << endl;
+ 
+}
 
 
 
