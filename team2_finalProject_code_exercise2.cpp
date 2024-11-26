@@ -260,7 +260,29 @@ int read_stockMenu() {
     return choice;
  
 }
-
+void one_information(const Product& product) {
+ 
+    cout << fixed << setprecision(2);
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << "CODE\t\t:  " << product.code << endl;
+ 
+    if (product.code == 250) {
+           
+        cout << "DIMENSION\t:  " << product.dimension << "\t\tml" << endl;
+   
+    }
+ 
+ 
+    else {
+ 
+        cout << "DIMENSION\t:  " << product.dimension << "\tml" << endl;
+ 
+    }
+ 
+    cout << "CURRENT STOCK\t:  " << product.current_stock << "\t\titems" << endl;
+    cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
+ 
+}
 
 
 
