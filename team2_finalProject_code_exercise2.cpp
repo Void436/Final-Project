@@ -298,7 +298,7 @@ int read_MainMenu() {
 
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            
+
             //Display outputs
             cout << "ERROR! You wrote a wrong number. Try again!" << endl << endl;
             choice = 0;
@@ -336,7 +336,69 @@ void show_Receipt(const Product products[], int size, const int purchased_qty[])
 
 
 
-//skander
+//SKANDER
+void replenish_Stock_Inventory(Product products[], int size) {
+
+    //Declare variables and constants and initialize
+    int code;
+    int quantity;
+    bool code_verif = false;
+
+    //Invite, read and save inputs
+    do {
+
+        cout << "Enter the CODE of the product (50, 100, 250, or 500) to REPLENISH your stock: " << endl;
+        cin >> code;
+
+        if ((code != 50 && code != 100 && code != 250 && code != 500) || cin.fail()) {
+            
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "The product code entered is not valid." << endl << endl;
+            code_verif = false;
+
+        } 
+        
+        else {
+
+            code_verif = true;
+
+        }
+
+    } while (code_verif == false);
+
+    cout << endl;
+
+    for (int i = 0; i < size; i++) {
+
+        if (products[i].code == code) {
+
+            one_Information(products[i]);
+
+
+            do {
+
+                cout << "How many new items to ADD to the stock?:" << endl;
+                cin >> quantity;
+
+                if (cin.fail() || quantity < 0) {
+
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Please, write a POSITIVE number." << endl << endl;
+
+                }
+
+            } while (cin.fail() || quantity < 0);
+            
+            calculate_Add_ToStock(products[i], quantity);
+
+            return;
+        }
+    }
+    
+
+}
 
 
 
@@ -350,6 +412,3 @@ void write_Stock_Inventory(const Product products[], int size){
 }
 
 
-void replenish_Stock_Inventory(Product products[], int size){
-
-}
