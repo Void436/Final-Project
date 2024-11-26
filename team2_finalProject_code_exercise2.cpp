@@ -11,30 +11,36 @@ FOR 5: EXIT
 */  
 
 #include <iostream>
+#include <limits> // to reject alphabets in input
+#include <iomanip> // for only 2 numbers after the decimal
 using namespace std;
 
 
-//Declare variables and constants and initialize
 
+//Declare variables and constants and initialize
 struct Product {
+
     int code;
     string dimension;
     float unit_price;
     int current_stock = 0;
+
 };
 
 const float TPS = 0.05;
 const float TVQ = 0.09975;
 
 
-
-//declaring functions
+//Declaring functions
 void information(const Product& product);
-int read_mainMenu();
-int read_stockMenu();
-void stock_inventory(Product& product);
-void calculate_User_Purchase(Product products[], int size);
+int read_MainMenu();
+int read_StockMenu();
+void calculate_User_Purchase(Product products[], int size, int purchased_qty[]);
 void calculate_Add_ToStock(Product& product, int quantity);
+void write_Stock_Inventory(const Product products[], int size);
+void one_Information(const Product& product);
+void replenish_Stock_Inventory(Product products[], int size);
+void show_Receipt(const Product products[], int size, const int purchased_qty[]);
 
 
 
@@ -146,91 +152,8 @@ int main()
 
 
 
-
-
-
-
-
-
-
-
-
-//robert
- 
-void information(const Product& product) {
-    cout << fixed << setprecision(2);
-    cout << "----------------------------------------------------------------------------------------------------" << endl;
-    cout << "CODE\t\t:  " << product.code << endl;
- 
-    if (product.code == 250) {
-           
-        cout << "DIMENSION\t:  " << product.dimension << "\t\tml" << endl;
-   
-    }
- 
-    else {
- 
-        cout << "DIMENSION\t:  " << product.dimension << "\tml" << endl;
- 
-    }
- 
-    cout << "UNIT PRICE\t:  " << product.unit_price << "\t$CA" << endl;
-    cout << "TPS\t\t:  " << product.unit_price * TPS << "\t\t$CA\t(5%)" << endl;
-    cout << "TVQ\t\t:  " << product.unit_price * TVQ << "\t\t$CA\t(9.975%)" << endl;
-    cout << "TOTAL\t\t:  " << (product.unit_price * TPS)  + (product.unit_price * TVQ) + product.unit_price << "\t$CA" << endl;
-    cout << "CURRENT STOCK\t:  " << product.current_stock << "\t\titems" << endl;
-    cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
-}
- 
-
-int read_mainMenu() {
-    int choice;
-    do {
-        cout << "******************************************************************************************************************" << endl;
-        cout << "*****************************************  Welcome to CALCULATOR PLUS !  *****************************************" << endl;
-        cout << "Choose :" << endl;
-        cout << "\t1. for INFORMATION ABOUT 1 PRODUCT" << endl;
-        cout << "\t2. for INFORMATION ABOUT ALL THE PRODUCTS" << endl;
-        cout << "\t3. for PURCHASE CALCULATOR" << endl;
-        cout << "\t4. for STOCK INVENTORY AND REPLENISHMENT" << endl;
-        cout << "\t5. for EXIT" << endl;
-        cout << "******************************************************************************************************************" << endl;
-        cout << "Enter your choice (1-5): " << endl;
-        cin >> choice;
- 
-        if (choice < 1 || choice > 5 || cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "ERROR! You wrote a wrong number. Try again!" << endl << endl;
-            choice = 0;
-        }
-    } while (choice < 1 || choice > 5);
-    return choice;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//fin
-
-
-int read_stockMenu() {
+//FINLEY
+int read_StockMenu() {
  
     int choice;
  
@@ -260,7 +183,10 @@ int read_stockMenu() {
     return choice;
  
 }
-void one_information(const Product& product) {
+
+
+
+void one_Information(const Product& product) {
  
     cout << fixed << setprecision(2);
     cout << "----------------------------------------------------------------------------------------------------" << endl;
@@ -283,13 +209,94 @@ void one_information(const Product& product) {
     cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
  
 }
- 
+
+
+
 void calculate_Add_ToStock(Product& product, int quantity) {
  
     product.current_stock += quantity;
     cout << "The stock was REPLENISHED successfully." << endl << endl;
  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ROBERT
+void information(const Product& product) {
+    cout << fixed << setprecision(2);
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << "CODE\t\t:  " << product.code << endl;
+ 
+    if (product.code == 250) {
+           
+        cout << "DIMENSION\t:  " << product.dimension << "\t\tml" << endl;
+   
+    }
+ 
+    else {
+ 
+        cout << "DIMENSION\t:  " << product.dimension << "\tml" << endl;
+ 
+    }
+ 
+    cout << "UNIT PRICE\t:  " << product.unit_price << "\t$CA" << endl;
+    cout << "TPS\t\t:  " << product.unit_price * TPS << "\t\t$CA\t(5%)" << endl;
+    cout << "TVQ\t\t:  " << product.unit_price * TVQ << "\t\t$CA\t(9.975%)" << endl;
+    cout << "TOTAL\t\t:  " << (product.unit_price * TPS)  + (product.unit_price * TVQ) + product.unit_price << "\t$CA" << endl;
+    cout << "CURRENT STOCK\t:  " << product.current_stock << "\t\titems" << endl;
+    cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
+}
+ 
+
+
+int read_MainMenu() {
+    int choice;
+    do {
+        cout << "******************************************************************************************************************" << endl;
+        cout << "*****************************************  Welcome to CALCULATOR PLUS !  *****************************************" << endl;
+        cout << "Choose :" << endl;
+        cout << "\t1. for INFORMATION ABOUT 1 PRODUCT" << endl;
+        cout << "\t2. for INFORMATION ABOUT ALL THE PRODUCTS" << endl;
+        cout << "\t3. for PURCHASE CALCULATOR" << endl;
+        cout << "\t4. for STOCK INVENTORY AND REPLENISHMENT" << endl;
+        cout << "\t5. for EXIT" << endl;
+        cout << "******************************************************************************************************************" << endl;
+        cout << "Enter your choice (1-5): " << endl;
+        cin >> choice;
+ 
+        if (choice < 1 || choice > 5 || cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "ERROR! You wrote a wrong number. Try again!" << endl << endl;
+            choice = 0;
+        }
+    } while (choice < 1 || choice > 5);
+    return choice;
+}
+
+
+
+void show_Receipt(const Product products[], int size, const int purchased_qty[]){
+
+}
+
+
+
+
+
 
 
 
@@ -313,8 +320,12 @@ void calculate_User_Purchase (){
 
 }
  
-void calculate_Add_ToStock ( int code, int quantity ){
+
+void write_Stock_Inventory(const Product products[], int size){
 
 }
 
 
+void replenish_Stock_Inventory(Product products[], int size){
+
+}
