@@ -183,8 +183,29 @@ void information(const Product& product) {
 }
  
 
-int read_mainMenu () {
-
+int read_mainMenu() {
+    int choice;
+    do {
+        cout << "******************************************************************************************************************" << endl;
+        cout << "*****************************************  Welcome to CALCULATOR PLUS !  *****************************************" << endl;
+        cout << "Choose :" << endl;
+        cout << "\t1. for INFORMATION ABOUT 1 PRODUCT" << endl;
+        cout << "\t2. for INFORMATION ABOUT ALL THE PRODUCTS" << endl;
+        cout << "\t3. for PURCHASE CALCULATOR" << endl;
+        cout << "\t4. for STOCK INVENTORY AND REPLENISHMENT" << endl;
+        cout << "\t5. for EXIT" << endl;
+        cout << "******************************************************************************************************************" << endl;
+        cout << "Enter your choice (1-5): " << endl;
+        cin >> choice;
+ 
+        if (choice < 1 || choice > 5 || cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "ERROR! You wrote a wrong number. Try again!" << endl << endl;
+            choice = 0;
+        }
+    } while (choice < 1 || choice > 5);
+    return choice;
 }
 
 
