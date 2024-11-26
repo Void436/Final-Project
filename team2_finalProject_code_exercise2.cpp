@@ -402,9 +402,306 @@ void replenish_Stock_Inventory(Product products[], int size) {
 
 
 
-void calculate_User_Purchase (){
+
+void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) {
+
+    int code;
+    int quantity;
+    float total_before_tax = 0;
+    float total_tps = 0;
+    float total_tvq = 0;
+    float grand_total = 0;
+    int total_products = 0;
+    bool code_verif = false;
+    bool all_good = false;
+
+
+    for (int i = 0; i < size; i++) {
+        purchased_qty[i] = 0;
+    }
+
+    do {
+
+
+        do {
+
+            cout << endl << "Enter the CODE of the product you bought (50, 100, 250, or 500) or 0 to show the receipt: " << endl;
+            cin >> code;
+
+            if ((code != 50 && code != 100 && code != 250 && code != 500 && code != 0) || cin.fail()) {
+                
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "The product code entered is not valid." << endl << endl;
+                code_verif = false;
+
+            } 
+            
+            else {
+
+                code_verif = true;
+
+            }
+
+        } while (code_verif == false);
+
+        
+        if (code == 0) {
+
+            show_Receipt(products, size, purchased_qty);
+            all_good == true;
+            return;
+
+        }
+
+        else {
+
+//NIK NA7I EL FOR W A3MEL [0] W [1] W [2] W [3]
+            do {
+                if (code == 50) {
+
+                    do {
+
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cin >> quantity;
+
+                        if (cin.fail() || quantity < 0) {
+
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                            cout << "Please, write a POSITIVE number." << endl << endl;
+
+                        }
+
+                    } while (cin.fail() || quantity < 0);
+
+                    if (quantity == 0) {
+
+                        cout << "This product is out of stock." << endl << endl;
+                        all_good = false;
+                        
+                    }
+
+
+                    if (products[0].code == code) {
+
+                        do {
+                            if (quantity > products[0].current_stock) {
+
+                                cout << "ERROR! You have only " << products[0].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
+                                all_good = false;
+
+                            }
+
+                            else if (quantity == 0) {
+
+                                all_good = false;
+                                break;
+
+                            }
+
+                            else {
+
+                                products[0].current_stock -= quantity;
+                                purchased_qty[0] += quantity;
+
+                                cout << quantity << " product of dimension " << products[0].dimension << " (" << products[0].code << " ml) have been added to your cart." << endl;
+                                all_good = false;
+                                break;
+                                return;
+
+                            }
+                        } while (true);
+                    }
+                    break;
+                }
+                
+                else if (code == 100) {
+
+                    do {
+
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cin >> quantity;
+
+                        if (cin.fail() || quantity < 0) {
+
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                            cout << "Please, write a POSITIVE number." << endl << endl;
+
+                        }
+
+                    } while (cin.fail() || quantity < 0);
+
+                    if (quantity == 0) {
+
+                        cout << "This product is out of stock." << endl << endl;
+                        all_good = false;
+                        
+                    }
+
+
+                    if (products[1].code == code) {
+
+                        do {
+                            if (quantity > products[1].current_stock) {
+
+                                cout << "ERROR! You have only " << products[1].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
+                                all_good = false;
+
+                            }
+
+                            else if (quantity == 0) {
+
+                                all_good = false;
+                                break;
+
+                            }
+
+                            else {
+
+                                products[1].current_stock -= quantity;
+                                purchased_qty[1] += quantity;
+
+                                cout << quantity << " product of dimension " << products[1].dimension << " (" << products[1].code << " ml) have been added to your cart." << endl;
+                                all_good = false;
+                                break;
+                                return;
+
+                            }
+                        } while (true);
+                    }
+                    break;
+                }
+                
+                else if (code == 250) {
+
+                    do {
+
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cin >> quantity;
+
+                        if (cin.fail() || quantity < 0) {
+
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                            cout << "Please, write a POSITIVE number." << endl << endl;
+
+                        }
+
+                    } while (cin.fail() || quantity < 0);
+
+                    if (quantity == 0) {
+
+                        cout << "This product is out of stock." << endl << endl;
+                        all_good = false;
+                        
+                    }
+
+
+                    if (products[2].code == code) {
+
+                        do {
+                            if (quantity > products[2].current_stock) {
+
+                                cout << "ERROR! You have only " << products[2].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
+                                all_good = false;
+
+                            }
+
+                            else if (quantity == 0) {
+
+                                all_good = false;
+                                break;
+
+                            }
+
+                            else {
+
+                                products[2].current_stock -= quantity;
+                                purchased_qty[2] += quantity;
+
+                                cout << quantity << " product of dimension " << products[2].dimension << " (" << products[2].code << " ml) have been added to your cart." << endl;
+                                all_good = false;
+                                break;
+                                return;
+
+                            }
+                        } while (true);
+                    }
+                    break;
+                }
+                
+                else if (code == 500) {
+
+                    do {
+
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cin >> quantity;
+
+                        if (cin.fail() || quantity < 0) {
+
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                            cout << "Please, write a POSITIVE number." << endl << endl;
+
+                        }
+
+                    } while (cin.fail() || quantity < 0);
+
+                    if (quantity == 0) {
+
+                        cout << "This product is out of stock." << endl << endl;
+                        all_good = false;
+                        
+                    }
+
+
+                    else if (products[3].code == code) {
+
+                        do {
+                            if (quantity > products[3].current_stock) {
+
+                                cout << "ERROR! You have only " << products[3].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
+                                all_good = false;
+
+                            }
+
+                            else if (quantity == 0) {
+
+                                all_good = false;
+                                break;
+
+                            }
+
+                            else {
+
+                                products[3].current_stock -= quantity;
+                                purchased_qty[3] += quantity;
+
+                                cout << quantity << " product of dimension " << products[3].dimension << " (" << products[3].code << " ml) have been added to your cart." << endl;
+                                all_good = false;
+                                break;
+                                return;
+
+                            }
+                        } while (true);
+                    }
+                    break;
+                }
+            } while (all_good == false);
+        }
+
+    } while (all_good == false);
+    
 
 }
+
+
  
 
 void write_Stock_Inventory(const Product products[], int size){
