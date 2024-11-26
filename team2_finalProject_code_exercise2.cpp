@@ -156,20 +156,32 @@ int main()
 
 
 //robert
-template <typename T>
-void information(const T& p)
-{
-    cout
-    << "----------------------------------------------------------------" <<endl
-    << "CODE            : " << p.code <<endl
-    << "DIMENSION       : " << p.dimension <<" ml" <<endl
-    << "UNIT PRICE      : " << p.unit_price <<" $CA" <<endl
-    << "TPS             : " << p.unit_price*tps <<" $CA" <<"    (5%)" <<endl
-    << "TVQ             : " << p.unit_price*tvq <<" $CA" <<"   (9.975%)" <<endl
-    << "TOTAL           : " << p.unit_price + p.unit_price*tps + p.unit_price*tvq <<" $CA" <<endl
-    << "CURRENT STOCK   : " << p.current_stock <<" items" <<endl
-    << "----------------------------------------------------------------" <<endl;
+ 
+void information(const Product& product) {
+    cout << fixed << setprecision(2);
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << "CODE\t\t:  " << product.code << endl;
+ 
+    if (product.code == 250) {
+           
+        cout << "DIMENSION\t:  " << product.dimension << "\t\tml" << endl;
+   
+    }
+ 
+    else {
+ 
+        cout << "DIMENSION\t:  " << product.dimension << "\tml" << endl;
+ 
+    }
+ 
+    cout << "UNIT PRICE\t:  " << product.unit_price << "\t$CA" << endl;
+    cout << "TPS\t\t:  " << product.unit_price * TPS << "\t\t$CA\t(5%)" << endl;
+    cout << "TVQ\t\t:  " << product.unit_price * TVQ << "\t\t$CA\t(9.975%)" << endl;
+    cout << "TOTAL\t\t:  " << (product.unit_price * TPS)  + (product.unit_price * TVQ) + product.unit_price << "\t$CA" << endl;
+    cout << "CURRENT STOCK\t:  " << product.current_stock << "\t\titems" << endl;
+    cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
 }
+ 
 
 int read_mainMenu () {
 
