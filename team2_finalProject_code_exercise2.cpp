@@ -554,6 +554,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
         else {
 
             do {
+                
                 if (code == 50) {
 
                     //Invite, read and save inputs
