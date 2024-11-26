@@ -704,8 +704,36 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
 
  
 
-void write_Stock_Inventory(const Product products[], int size){
+
+void write_Stock_Inventory(const Product products[], int size) {
+
+    int code;
+    bool code_verif = false;
+
+    do {
+
+        cout << "Enter the CODE of the product (50, 100, 250, or 500) to display its details: " << endl;
+        cin >> code;
+
+        
+        if ( (code != 50 && code != 100 && code != 250 && code !=500) || cin.fail()) {
+
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "The product code entered is not valid." << endl << endl;
+            code_verif = false;
+
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (products[i].code == code) {
+                cout << endl;
+                code_verif = true;
+                information(products[i]);
+                return;
+            }
+        }
+
+    } while (code_verif == false);
 
 }
-
-
