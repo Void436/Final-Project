@@ -155,8 +155,10 @@ int main()
 //FINLEY
 int read_StockMenu() {
  
+    //Declare variables and constants and initialize
     int choice;
  
+    //Invite, read and save inputs
     do {
         cout << "******************************************************************************************************************" << endl;
         cout << "Choose :" << endl;
@@ -172,6 +174,7 @@ int read_StockMenu() {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
  
+            //Display outputs
             cout << "ERROR! You wrote a wrong number. Try again!" << endl << endl;
             choice = 0;
  
@@ -188,6 +191,7 @@ int read_StockMenu() {
 
 void one_Information(const Product& product) {
  
+    //Display outputs
     cout << fixed << setprecision(2);
     cout << "----------------------------------------------------------------------------------------------------" << endl;
     cout << "CODE\t\t:  " << product.code << endl;
@@ -214,7 +218,10 @@ void one_Information(const Product& product) {
 
 void calculate_Add_ToStock(Product& product, int quantity) {
  
+    //Calculate
     product.current_stock += quantity;
+
+    //Display outputs
     cout << "The stock was REPLENISHED successfully." << endl << endl;
  
 }
@@ -236,6 +243,8 @@ void calculate_Add_ToStock(Product& product, int quantity) {
 
 //ROBERT
 void information(const Product& product) {
+    
+    //Display outputs
     cout << fixed << setprecision(2);
     cout << "----------------------------------------------------------------------------------------------------" << endl;
     cout << "CODE\t\t:  " << product.code << endl;
@@ -252,19 +261,26 @@ void information(const Product& product) {
  
     }
  
+    //Calculate and display outputs
     cout << "UNIT PRICE\t:  " << product.unit_price << "\t$CA" << endl;
     cout << "TPS\t\t:  " << product.unit_price * TPS << "\t\t$CA\t(5%)" << endl;
     cout << "TVQ\t\t:  " << product.unit_price * TVQ << "\t\t$CA\t(9.975%)" << endl;
     cout << "TOTAL\t\t:  " << (product.unit_price * TPS)  + (product.unit_price * TVQ) + product.unit_price << "\t$CA" << endl;
     cout << "CURRENT STOCK\t:  " << product.current_stock << "\t\titems" << endl;
     cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
+
 }
  
 
 
 int read_MainMenu() {
+
+    //Declare variables and constants and initialize
     int choice;
+
+    //Invite, read and save inputs
     do {
+
         cout << "******************************************************************************************************************" << endl;
         cout << "*****************************************  Welcome to CALCULATOR PLUS !  *****************************************" << endl;
         cout << "Choose :" << endl;
@@ -274,17 +290,25 @@ int read_MainMenu() {
         cout << "\t4. for STOCK INVENTORY AND REPLENISHMENT" << endl;
         cout << "\t5. for EXIT" << endl;
         cout << "******************************************************************************************************************" << endl;
+        
         cout << "Enter your choice (1-5): " << endl;
         cin >> choice;
  
         if (choice < 1 || choice > 5 || cin.fail()) {
+
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            
+            //Display outputs
             cout << "ERROR! You wrote a wrong number. Try again!" << endl << endl;
             choice = 0;
+
         }
+
     } while (choice < 1 || choice > 5);
+
     return choice;
+
 }
 
 
