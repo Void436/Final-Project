@@ -48,10 +48,10 @@ void show_Receipt(const Product products[], int size, const int purchased_qty[])
 int main() {
 
     //Declare variables and constants and initialize
-    Product small = {50, "Small", 15.99, 33};
-    Product medium = {100, "Medium", 24.99, 14};
-    Product big = {250, "Big", 49.99, 17};
-    Product extra = {500, "Extra", 89.99, 5};
+    Product small = {50, "Small", 15.99, 0};
+    Product medium = {100, "Medium", 24.99, 0};
+    Product big = {250, "Big", 49.99, 0};
+    Product extra = {500, "Extra", 89.99, 0};
     Product products[] = {small, medium, big, extra};
 
     int user_choice;
