@@ -45,103 +45,122 @@ void show_Receipt(const Product products[], int size, const int purchased_qty[])
 
 
 
-//main Program
-int main()
-{
+int main() {
 
-    //Declare variables and constants and initialize
-    Product small, medium, big, extra;
+    Product small = {50, "Small", 15.99, 33};
+    Product medium = {100, "Medium", 24.99, 14};
+    Product big = {250, "Big", 49.99, 17};
+    Product extra = {500, "Extra", 89.99, 5};
+    Product products[] = {small, medium, big, extra};
+
     int user_choice;
-    int user_choice_sequel;
+    int purchased_qty[4] = {0, 0, 0, 0};
 
-    //filling the product info
-        //small
-        small.code = 50;
-        small.dimension = "Small";
-        small.unit_price = 15.99;
-        //medium
-        medium.code = 100;
-        medium.dimension = "Medium";
-        medium.unit_price = 24.99;
-        //small
-        big.code = 250;
-        big.dimension = "Big";
-        big.unit_price = 49.99;
-        //medium
-        extra.code = 500;
-        extra.dimension = "Extra";
-        extra.unit_price = 89.99;
+    do {
 
-    while (user_choice != 5){
-        cout 
-        << "***************************************************************" <<endl
-        << "*************  Welcome to CALCULATOR PLUS !  ******************" <<endl
-        << "Choose :" <<endl
-        << "1 for INFORMATION ABOUT 1 PRODUCT" <<endl
-        << "2 for INFORMATION ABOUT ALL THE PRODUCTS" <<endl
-        << "3 for PURCHASE CALCULATOR" <<endl
-        << "4 for STOCK INVENTORY AND REPLENISHMENTS" <<endl
-        << "5 for EXIT" <<endl
-        << "***************************************************************" <<endl
-        << "Write your choice below: (1 to 5)" <<endl ;
-        cin >>user_choice;
-        while (cin.fail()){
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
+        user_choice = read_MainMenu();
+
 
         if (user_choice == 1) {
-            while (user_choice_sequel != 50 & user_choice_sequel != 100 & user_choice_sequel != 250 & user_choice_sequel != 500){
-            //invite input and make sure it is a number
-            cout << "Enter the CODE of the product (50, 100, 250 or 500) to display it's details:" <<endl;
-            cin >>user_choice_sequel;
-            while (cin.fail()){
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-            //actual choice
-            if (user_choice_sequel == 50){
-                information(small);
-            }
-            else if (user_choice_sequel == 100){
-                information(medium);
-            }
-            else if (user_choice_sequel == 250){
-                information(big);
-            }
-            else if (user_choice_sequel == 500){
-                information(extra);
-            }
-            else {
-                cout << "The product code entered is not valid." <<endl;
-            }
-        }
-        }
+            write_Stock_Inventory(products, 4);
+        } 
 
+        
         else if (user_choice == 2) {
-            information(small);
-            information(medium);
-            information(big);
-            information(extra);
-            //names_of_the_other_functions (other variables);
-        }
 
+            cout << endl;
+            for (int i = 0; i < 4; i++) {
+                information(products[i]);
+            }
+        } 
+
+        
         else if (user_choice == 3) {
+            calculate_User_Purchase(products, 4, purchased_qty);
+        } 
 
-        }
-
+        
         else if (user_choice == 4) {
 
-        }
+            int stock_choice = 0;
 
-        else if (user_choice == 5) {
-            cout << "Thank you for shopping at Sirop d'Érable Montréal.See you soon!";
-        }
+            do {
+                stock_choice = read_StockMenu();
 
-        else {
-            cout << "ERROR! You wrote a wrong number. Try again!" <<endl;
+
+                if (stock_choice == 1) {
+                    
+                    int code;
+                    bool code_verif = false;
+
+                    do {
+
+                        cout << "Enter the CODE of the product (50, 100, 250, or 500) to display its details: " << endl;
+                        cin >> code;
+
+                        
+                        if ( (code != 50 && code != 100 && code != 250 && code !=500) || cin.fail()) {
+
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            cout << "The product code entered is not valid." << endl << endl;
+                            code_verif = false;
+
+                        }
+
+                        else {
+                            
+                            cout << endl;
+                            code_verif = true;
+
+                        }
+
+                    } while (code_verif == false);
+
+                    if (code == 50) {
+                        
+                        one_Information(products[0]);
+                    
+                    }
+
+                    else if (code == 100) {
+                        
+                        one_Information(products[1]);
+                    
+                    }
+
+                    else if (code == 250) {
+                        
+                        one_Information(products[2]);
+                    
+                    }
+
+                    else if (code == 500) {
+                        
+                        one_Information(products[3]);
+                    
+                    }
+
+                } 
+                
+                else if (stock_choice == 2) {
+
+                    replenish_Stock_Inventory(products, 4);
+
+                }
+
+            } while (stock_choice != 3);
+
+            
+            
+
         }
-    }
+        
+    } while (user_choice != 5);
+
+    cout << endl << "Thank you for using CALCULATOR PLUS! See you next time!" << endl << endl;
+
+    return 0;
 }
 
 
@@ -405,6 +424,7 @@ void replenish_Stock_Inventory(Product products[], int size) {
 
 void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) {
 
+    //Declare variables and constants and initialize
     int code;
     int quantity;
     float total_before_tax = 0;
@@ -423,6 +443,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
     do {
 
 
+        //Invite, read and save inputs
         do {
 
             cout << endl << "Enter the CODE of the product you bought (50, 100, 250, or 500) or 0 to show the receipt: " << endl;
@@ -432,6 +453,8 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                 
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                
+                //Display outputs
                 cout << "The product code entered is not valid." << endl << endl;
                 code_verif = false;
 
@@ -447,7 +470,8 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
 
         
         if (code == 0) {
-
+            
+            //Display outputs
             show_Receipt(products, size, purchased_qty);
             all_good == true;
             return;
@@ -456,7 +480,6 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
 
         else {
 
-//NIK NA7I EL FOR W A3MEL [0] W [1] W [2] W [3]
             do {
                 if (code == 50) {
 
@@ -503,9 +526,11 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
 
                             else {
 
+                                //Calculate
                                 products[0].current_stock -= quantity;
                                 purchased_qty[0] += quantity;
 
+                                //Display outputs
                                 cout << quantity << " product of dimension " << products[0].dimension << " (" << products[0].code << " ml) have been added to your cart." << endl;
                                 all_good = false;
                                 break;
