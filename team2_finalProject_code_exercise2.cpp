@@ -332,8 +332,46 @@ int read_MainMenu() {
 
 
 
-void show_Receipt(const Product products[], int size, const int purchased_qty[]){
-
+void show_Receipt(const Product products[], int size, const int purchased_qty[]) {
+ 
+    float total_before_tax = 0;
+    float total_tps = 0;
+    float total_tvq = 0;
+    float grand_total = 0;
+    int total_products = 0;
+ 
+    cout << fixed << setprecision(2);
+    cout << endl << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << "Code\tDimension\tQty\tUnit Price\tSubtotal\tTPS\tTVQ\tTotal" << endl;
+ 
+    for (int i = 0; i < size; i++) {
+        if (purchased_qty[i] > 0) {
+            float subtotal = purchased_qty[i] * products[i].unit_price;
+            float tps = subtotal * TPS;
+            float tvq = subtotal * TVQ;
+            float total = subtotal + tps + tvq;
+ 
+            total_before_tax += subtotal;
+            total_tps += tps;
+            total_tvq += tvq;
+            grand_total += total;
+            total_products += purchased_qty[i];
+ 
+            cout << products[i].code << "\t" << products[i].dimension << "\t\t" << purchased_qty[i]
+                 << "\t" << products[i].unit_price << "\t\t" << subtotal
+                 << "\t\t" << tps << "\t" << tvq << "\t" << total << endl;
+        }
+    }
+ 
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << endl << "NOMBRE DE PRODUITS ACHETES \t:\t" << total_products << "\titems" << endl;
+    cout << "PRIX HORS TAXES\t\t\t:\t" << total_before_tax << "\t$CA" << endl;
+    cout << "\tTPS\t\t\t:\t" << total_tps << "\t$CA" << endl;
+    cout << "\tTVQ\t\t\t:\t" << total_tvq << "\t$CA" << endl;
+    cout << "PRIX AVEC TAXE\t\t\t:\t" << grand_total << "\t$CA" << endl;
+    cout << "----------------------------------------------------------------------------------------------------" << endl << endl;
+ 
 }
 
 
