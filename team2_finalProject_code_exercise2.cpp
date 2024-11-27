@@ -7,7 +7,6 @@ FOR 3: CALCULATE the user's purchase with taxes and total
        DISPLAY the receit 
 FOR 4:  CALCULATE and DISPLAY stock  quantity and be able to add  to stock
 FOR 5: EXIT
-
 */  
 
 #include <iostream>
@@ -560,7 +559,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                     //Invite, read and save inputs
                     do {
 
-                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock or to go back:" << endl;
                         cin >> quantity;
 
                         if (cin.fail() || quantity < 0) {
@@ -590,6 +589,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                                 //Display outputs
                                 cout << "ERROR! You have only " << products[0].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
                                 all_good = false;
+                                break;
 
                             }
 
@@ -623,7 +623,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                     //Invite, read and save inputs
                     do {
 
-                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock or to go back:" << endl;
                         cin >> quantity;
 
                         if (cin.fail() || quantity < 0) {
@@ -653,6 +653,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                                 //Display outputs
                                 cout << "ERROR! You have only " << products[1].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
                                 all_good = false;
+                                break;
 
                             }
 
@@ -686,7 +687,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                     //Invite, read and save inputs
                     do {
 
-                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock or to go back:" << endl;
                         cin >> quantity;
 
                         if (cin.fail() || quantity < 0) {
@@ -716,6 +717,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                                 //Display outputs
                                 cout << "ERROR! You have only " << products[2].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
                                 all_good = false;
+                                break;
 
                             }
 
@@ -749,7 +751,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                     //Invite, read and save inputs
                     do {
 
-                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock:" << endl;
+                        cout << endl << "Enter the QUANTITY you bought or 0 if this product is out of stock or to go back:" << endl;
                         cin >> quantity;
 
                         if (cin.fail() || quantity < 0) {
@@ -779,6 +781,7 @@ void calculate_User_Purchase(Product products[], int size, int purchased_qty[]) 
                                 //Display outputs
                                 cout << "ERROR! You have only " << products[3].current_stock << " in stock. You cannot buy " << quantity << " unit of this product now." << endl << endl;
                                 all_good = false;
+                                break;
 
                             }
 
